@@ -206,6 +206,7 @@ bool Solver::validate ()
       if (c.size() > 1) {
           attachClause(confl_assumps);
           learnts.push(confl_assumps);
+          //HG : does this happens only during validation ?
           proof.push(CRef_Undef);
       }
   }
@@ -471,6 +472,7 @@ void Solver::replay (ProofVisitor& v,  vec<CRef>* pOldProof)
 
   vec<CRef> newProof;
   bool bConflict = false;
+  printf("Original proof size %d\n",proof.size());
   for (int i = 0; i < proof.size (); ++i)
     {
       if (proof[i] == CRef_Undef) break;
@@ -734,7 +736,7 @@ void Solver::replay (ProofVisitor& v,  vec<CRef>* pOldProof)
         if (c.reloced() == 0)
             (c.learnt() ? learnts : clauses).push(newProof[i]);
     }
-
+    printf("new proof size : %d\n",newProof.size());
     // Clean mark
     for (int i=0; i < learnts.size(); i++)
           ca[learnts[i]].reloced(0);
