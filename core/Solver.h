@@ -290,7 +290,9 @@ protected:
     int lastIndexRed;
     bool                ok;               // If FALSE, the constraints are already unsatisfiable. No part of the solver state may be used!
     double              cla_inc;          // Amount to bump next clause with.
+    public:
     vec<CRef>           proof;            // Clausal proof
+    protected:
     vec<Range>          trail_part;       // Partition of variables on the trail
     vec<double>         activity;         // A heuristic measurement of the activity of a variable.
     double              var_inc;          // Amount to bump next variable with.
